@@ -7,7 +7,7 @@
     <groupId>org.uts</groupId>
     <artifactId>uts-gateway</artifactId>
     <version>1.0.0</version>
-    <name>bms-sale</name>
+    <name>uts-gateway</name>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -92,7 +92,7 @@
 
     <build>
         <!-- 指定项目的jar包名称 -->
-        <finalName>bms-sale</finalName>
+        <finalName>uts-gateway</finalName>
 
         <!-- 自定义打包配置 -->
         <plugins>
@@ -113,7 +113,7 @@
                     <!-- 产物tar.gz名称中，不包含package.xml中配置的ID -->
                     <appendAssemblyId>false</appendAssemblyId>
                     <!-- 在这里设置自定义的产物tar.gz文件名称 -->
-                    <finalName>bms-gateway</finalName>
+                    <finalName>uts-gateway</finalName>
                 </configuration>
 
                 <!--
