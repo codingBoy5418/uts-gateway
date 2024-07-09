@@ -113,7 +113,7 @@
                     <!-- 产物tar.gz名称中，不包含package.xml中配置的ID -->
                     <appendAssemblyId>false</appendAssemblyId>
                     <!-- 在这里设置自定义的产物tar.gz文件名称 -->
-                    <finalName>bms-runs</finalName>
+                    <finalName>bms-gateway</finalName>
                 </configuration>
 
                 <!--
