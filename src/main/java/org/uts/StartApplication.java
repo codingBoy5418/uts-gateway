@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
  * @Author 86180
  * @Date 2022/12/7 23:11
  * @Version 1.0
- * @Description: uts-gateway启动类
+ * @Description: uts-apigw启动类
  **/
 @SpringBootApplication
 @EnableCaching

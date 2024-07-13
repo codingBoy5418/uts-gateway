@@ -1,0 +1,132 @@
+# project info config
+server:
+  port: 8001
+  servlet:
+    context-path: /uts-apigw
+
+# system code config
+system:
+  code:02
+
+# db config
+spring:
+  application:
+    name: uts-apigw
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bms-sale?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
+    username: root
+    password: 123456
+
+  # redis config
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+  cloud:
+  # nacos config
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 3064957d-b949-4a3b-a014-46b850c3bf0c
+        group: uts-apigw
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 3064957d-b949-4a3b-a014-46b850c3bf0c
+        group: uts-apigw
+        file-extension: yaml
+
+    # gateway config
+    gateway:
+      routes:
+        - id: uts-discover
+          uri: lb://uts-discover
+          predicates:
+            - Path=/uts-apigw/uts-discover/**
+ #          - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-oauth
+          uri: lb://uts-oauth
+          predicates:
+             - Path=/uts-apigw/uts-oauth/**
+  #          - Custom=lyp
+          filters:
+             - StripPrefix=1
+
+        - id: uts-brm
+          uri: lb://uts-brm
+          predicates:
+            - Path=/uts-apigw/uts-brm/**
+  #         - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-seckill
+          uri: lb://uts-seckill
+          predicates:
+            - Path=/uts-apigw/uts-seckill/**
+#           - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-order
+          uri: lb://uts-order
+          predicates:
+            - Path=/uts-apigw/uts-order/**
+#            - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-integral
+          uri: lb://uts-integral
+          predicates:
+            - Path=/uts-apigw/uts-integral/**
+#            - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-pay
+          uri: lb://uts-pay
+          predicates:
+            - Path=/uts-apigw/uts-pay/**
+#            - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-event
+          uri: lb://uts-event
+          predicates:
+            - Path=/uts-apigw/uts-event/**
+#            - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+        - id: uts-apigw
+          # uri: http://localhost:8089
+          uri: lb://uts-apigw
+          predicates:
+            - Path=/uts-apigw/**
+#            - Custom=lyp
+          filters:
+            - StripPrefix=1
+
+
+
+# mybatis config
+  mybatis:
+    mapper-locations:
+      classpath: mapper/*Mapper.xml
+  # underscore to camel-case config,otherwise search value from db is null
+    configuration:
+      map-underscore-to-camel-case: true
+
+
+
+
+
+## Redis cache expire time config
+cache:
+  defaultExpiration； 60
