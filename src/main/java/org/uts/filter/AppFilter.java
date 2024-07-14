@@ -19,8 +19,40 @@ public class AppFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("request URL: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI());
-        return chain.filter(exchange);
+        //前置处理
+        preHandler(exchange, chain);
+
+        Mono<Void> res = chain.filter(exchange);
+
+        //后置处理
+        postHandler(exchange, chain);
+
+        return res;
+    }
+
+    public void preHandler(ServerWebExchange exchange, GatewayFilterChain chain){
+        log.info("rrequest-url: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI());
+        ContextHolder.appContext.set(System.currentTimeMillis());
+    }
+
+    public void postHandler(ServerWebExchange exchange, GatewayFilterChain chain){
+        //打印请求路径信息
+        printRequestUrlInfo(exchange);
+    }
+
+    /**
+     * 打印请求路径信息
+     * */
+    public void printRequestUrlInfo(ServerWebExchange exchange){
+        Long preTime = (Long)ContextHolder.appContext.get();
+        Long postTime = System.currentTimeMillis();
+        long costTime = (postTime - preTime) / 1000;
+        if(costTime > 3){
+            log.info("request-url: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI() + " request takes too long, time: " + costTime + " seconds ...");
+        }
+        else {
+            log.info("request-url: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI() + " return ...");
+        }
     }
 
 }

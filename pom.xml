@@ -27,6 +27,13 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-gateway</artifactId>
         <version>2.2.4.RELEASE</version>
+        <!-- remove logback from spring boot -->
+        <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+        </exclusions>
     </dependency>
 
     <!-- nacos依赖 -->
@@ -40,6 +47,13 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-validation</artifactId>
+        <!-- remove logback from spring boot -->
+        <exclusions>
+            <exclusion>
+                <artifactId>spring-boot-starter</artifactId>
+                <groupId>org.springframework.boot</groupId>
+            </exclusion>
+        </exclusions>
     </dependency>
 
     <!-- lombok -->
@@ -53,6 +67,13 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-redis</artifactId>
+        <!-- remove logback from spring boot -->
+        <exclusions>
+            <exclusion>
+                <artifactId>spring-boot-starter</artifactId>
+                <groupId>org.springframework.boot</groupId>
+            </exclusion>
+        </exclusions>
     </dependency>
 
     <!-- log4j2 -->
