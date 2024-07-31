@@ -7,7 +7,10 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
+import org.uts.utils.IPUtils;
 import reactor.core.publisher.Mono;
+
+import java.net.InetSocketAddress;
 
 /**
  * 定义网关的全局过滤器
@@ -31,7 +34,12 @@ public class AppFilter implements GlobalFilter {
     }
 
     public void preHandler(ServerWebExchange exchange, GatewayFilterChain chain){
-        log.info("rrequest-url: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI());
+        log.info("request-url: " + exchange.getRequest().getMethod() + " " + exchange.getRequest().getURI());
+
+        //将客户端IP设置到请求头中，传递到微服务
+        exchange.getRequest().mutate().header("Real-IP", IPUtils.getIpAddress(exchange.getRequest()));
+
+        //设置请求时间
         ContextHolder.appContext.set(System.currentTimeMillis());
     }
 

@@ -68,4 +68,4 @@ spring:
 
 启动uts-discover服务、uts-apigw服务，通过http://127.0.0.1:8001/uts-apigw/uts-discover/instance访问，请求从uts-apigw服务转发到uts-discover服务
 
-![image-20240714112651223](C:\Users\86180\AppData\Roaming\Typora\typora-user-images\image-20240714112651223.png)
+![image-20240714112651223](images\1.png)
