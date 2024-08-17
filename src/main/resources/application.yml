@@ -6,7 +6,7 @@ server:
 
 # system code config
 system:
-  code:02
+  code: 02
 
 # db config
 spring:
@@ -113,8 +113,6 @@ spring:
           filters:
             - StripPrefix=1
 
-
-
 # mybatis config
   mybatis:
     mapper-locations:
@@ -129,4 +127,4 @@ spring:
 
 ## Redis cache expire time config
 cache:
-  defaultExpiration； 60
+  defaultExpiration: 60
